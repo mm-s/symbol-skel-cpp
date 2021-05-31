@@ -26,7 +26,7 @@ target_include_directories(${PRJNAME}
 install(TARGETS ${PRJNAME} DESTINATION lib)
 
 install(DIRECTORY "${CMAKE_SOURCE_DIR}/src/" # source directory
-        DESTINATION "include/symbol/core" # target directory
+        DESTINATION "include/my_project" # target directory
         FILES_MATCHING # install only matched files
         PATTERN "*.h" # select header files
 )

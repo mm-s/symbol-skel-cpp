@@ -1,6 +1,6 @@
-add_executable(symbol-core main.cpp)
+add_executable(my_project main.cpp)
 
-target_include_directories(symbol-core
+target_include_directories(my_project
   INTERFACE
     # Headers used from source/build location:
     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
@@ -8,7 +8,7 @@ target_include_directories(symbol-core
     "$<INSTALL_INTERFACE:include>"
 )
 
-target_link_libraries(symbol-core PUBLIC symbolcore)
+target_link_libraries(my_project PUBLIC ${SYMBOLCORE_LIBRARIES})
 
-install(TARGETS symbol-core DESTINATION bin)
+install(TARGETS my_project DESTINATION bin)
 

@@ -1,5 +1,5 @@
 #pragma once
 
-#define SYMBOL_SDK_CORE_VERSION_MAJOR @symbol_sdk_core_VERSION_MAJOR@
-#define SYMBOL_SDK_CORE_VERSION_MINOR @symbol_sdk_core_VERSION_MINOR@
+#define MY_PROJECT_VERSION_MAJOR @my_project_VERSION_MAJOR@
+#define MY_PROJECT_VERSION_MINOR @my_project_VERSION_MINOR@
 

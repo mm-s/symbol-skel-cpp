@@ -5,7 +5,7 @@
 #pragma once
 #include <symbol/core.h>
 
-namespace my_offline_project {
+namespace my_namespace {
 	///Each layer of speciaslisation of the Hmi class provide added function/features
 
 	/// Human-Machine Interface. All sections command processor (offline)

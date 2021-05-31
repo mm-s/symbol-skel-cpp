@@ -1,0 +1,62 @@
+#!/bin/bash
+
+function help {
+	echo "Possible commands:"
+	echo "bin/configure bootstrap my_project my_namespace \"My Project\" MY_PROJECT"
+}
+
+function rename {
+	newname=$1
+	namespace=$2
+	spacename=$3
+	macroname=$4
+	if [[ $newname == "" ]]; then
+		echo "Error Required input for unix-name"
+		help
+		exit 1
+	fi
+	if [[ $namespace == "" ]]; then
+		echo "Error Required input for namespace."
+		help
+		exit 1
+	fi
+	if [[ $spacename == "" ]]; then
+		echo "Error Required input for space name (with spaces)."
+		help
+		exit 1
+	fi
+	if [[ $macroname == "" ]]; then
+		echo "Error Required input for macro name."
+		help
+		exit 1
+	fi
+	sed -i "s/symbolskel/$newname/g" CMakeLists.txt
+	pushd include > /dev/null
+		git mv my_project $newname
+	popd > /dev/null
+	sed -i "s/my_project/$newname/g" cli/main.cpp
+	sed -i "s/my_offline_project/$namespace/g" cli/main.cpp
+	sed -i "s/My Project/$spacename/g" cli/main.cpp
+	sed -i "s/my_project/$newname/g" cli/CMakeLists.txt
+
+	sed -i "s/my_project/$newname/g" src/CMakeLists.txt
+	sed -i "s/my_project/$newname/g" src/config.h.in
+	sed -i "s/MY_PROJECT/$macroname/g" src/config.h.in
+	sed -i "s/my_namespace/$namespace/g" src/Hmi.h
+	sed -i "s/my_namespace/$namespace/g" src/Hmi.cpp
+	git --no-pager diff
+	echo "Project has been renamed. You can review and commit the changes."
+}
+
+
+cmd=$1
+shift
+
+if [[ $cmd == "bootstrap" ]]; then
+	rename "$@"
+	exit 0
+fi
+echo "Invalid command $cmd"
+help
+
+exit 1
