@@ -2,10 +2,11 @@
 
 function help {
 	echo "Possible commands:"
-	echo "bin/configure bootstrap my_project my_namespace \"My Project\" MY_PROJECT"
+	echo "    bootstrap"
+	echo "        $0 bootstrap my_project my_namespace \"My Project\" MY_PROJECT"
 	echo
 	echo "Example: My new project is gonna be called 'The Argos'."
-	echo "    bin/configure bootstrap argos argos \"The Argos\" ARGOS"
+	echo "    >$0 bootstrap argos argos \"The Argos\" ARGOS"
 }
 
 function rename {
@@ -60,21 +61,25 @@ function rename {
 		sed -i "s/my_project/$newname/g" Find${macroname}.cmake
 		sed -i "s/MY_PROJECT/$macroname/g" Find${macroname}.cmake
 	popd > /dev/null
+}
 
+function bootstrap {
+	rename "$@"
 	git add -u
 	git --no-pager status
 	echo "Project has been renamed. You can review and commit the changes."
 }
 
-
 cmd=$1
 shift
 
 if [[ $cmd == "bootstrap" ]]; then
-	rename "$@"
+	bootstrap "$@"
 	exit 0
 fi
+
 echo "Invalid command $cmd"
 help
 
 exit 1
+
