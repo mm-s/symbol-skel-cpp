@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 #----------------------------------
 #Main tweaking section
 
-set(PRJNAME symbolskel)
+set(PRJNAME MY_PROJECT)
 set(PRJVERSION 1.0)
 #----------------------------------
 project(${PRJNAME} VERSION ${PRJVERSION})

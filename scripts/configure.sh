@@ -9,6 +9,19 @@ function help {
 	echo "    >$0 bootstrap argos argos \"The Argos\" ARGOS"
 }
 
+function dofile {
+	newname=$1
+	namespace=$2
+	spacename=$3
+	macroname=$4
+	f=$5
+	sed -i "s/MY_PROJECT/$macroname/g" $f
+	sed -i "s/my_project/$newname/g" $f
+	sed -i "s/my_offline_project/$namespace/g" $f
+	sed -i "s/My Project/$spacename/g" $f
+	sed -i "s/my_namespace/$namespace/g" $f
+}
+
 function rename {
 	newname=$1
 	namespace=$2
@@ -34,7 +47,14 @@ function rename {
 		help
 		exit 1
 	fi
-	sed -i "s/symbolskel/$newname/g" CMakeLists.txt
+
+	#Token substitution
+	files=CMakeLists.txt cli/main.cpp cli/CMakeLists.txt src/CMakeLists.txt src/config.h.in src/MyHmi.h cmake/Modules/FindMY_PROJECT.cmake
+	for f in $files; do
+		dofile "$@" $f
+	done
+
+	#Include dir
 	pushd include > /dev/null
 		git rm my_project
 	popd
@@ -43,23 +63,10 @@ function rename {
 		ln -s ../src $newname
 		git add $newname
 	popd > /dev/null
-	sed -i "s/my_project/$newname/g" cli/main.cpp
-	sed -i "s/my_offline_project/$namespace/g" cli/main.cpp
-	sed -i "s/My Project/$spacename/g" cli/main.cpp
-	sed -i "s/my_namespace/$namespace/g" cli/main.cpp
-	sed -i "s/my_project/$newname/g" cli/CMakeLists.txt
-	sed -i "s/MY_PROJECT/$macroname/g" cli/CMakeLists.txt
 
-	sed -i "s/my_project/$newname/g" src/CMakeLists.txt
-	sed -i "s/my_project/$newname/g" src/config.h.in
-	sed -i "s/MY_PROJECT/$macroname/g" src/config.h.in
-	sed -i "s/my_namespace/$namespace/g" src/MyHmi.h
-	sed -i "s/my_namespace/$namespace/g" src/MyHmi.cpp
-
+	#CMake module
 	pushd cmake/Modules > /dev/null
 		git mv FindMY_PROJECT.cmake Find${macroname}.cmake
-		sed -i "s/my_project/$newname/g" Find${macroname}.cmake
-		sed -i "s/MY_PROJECT/$macroname/g" Find${macroname}.cmake
 	popd > /dev/null
 
 cat << EOF > README.md
