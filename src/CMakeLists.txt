@@ -8,26 +8,20 @@ if (NOT SYMBOLCORE_FOUND)
         message(FATAL_ERROR "symbol-core required.")
 endif()
 
-#------------- Find Symbol
-find_package (SYMBOL)
-if (NOT SYMBOL_FOUND)
-        message(FATAL_ERROR "symbol required.")
+#------------- Find Symbol-rpc
+find_package (SYMBOLRPC)
+if (NOT SYMBOLRPC_FOUND)
+        message(FATAL_ERROR "symbol-rpc required.")
 endif()
 
 #------------- libPRJNAME.so
 add_library(${PRJNAME}core SHARED ${${PRJNAME}_SRC})
 
-#-------------Use OpenSSL, Boost
-#include_directories(${SYMBOLCORE_INCLUDE_DIRS})
-#target_link_libraries(${PRJNAME}core ${SYMBOLCORE_LIBRARIES})
-
 include_directories(${SYMBOLCORE_INCLUDE_DIRS})
 target_link_libraries (${PRJNAME}core ${SYMBOLCORE_LIBRARIES})
 
-
 include_directories(${SYMBOL_INCLUDE_DIRS})
 target_link_libraries (${PRJNAME}core ${SYMBOL_LIBRARIES})
-
 
 set_property(TARGET ${PRJNAME}core PROPERTY POSITION_INDEPENDENT_CODE ON)
 
