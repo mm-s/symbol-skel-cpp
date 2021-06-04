@@ -19,7 +19,7 @@ TL; DR: Fork this repository to start a new C++ project based on the symbol-sdk-
 	make install
 
 
-##Governance:
+##Project Governance:
 
 ships: 
 	branch main: 
