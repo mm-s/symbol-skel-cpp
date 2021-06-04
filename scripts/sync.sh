@@ -30,10 +30,13 @@ file="FindSYMBOLCORE.cmake"
 cp ${prj}/cmake/Modules/$file cmake/Modules/
 file="FindSYMBOLRPC.cmake"
 cp ${prj}/cmake/Modules/$file cmake/Modules/
+file="FindRESTCCPP.cmake"
+cp ${prj}/cmake/Modules/$file cmake/Modules/
 
 # staging
 git add cmake/Modules/FindSYMBOLCORE.cmake
 git add cmake/Modules/FindSYMBOLRPC.cmake
+git add cmake/Modules/FindRESTCCPP.cmake
 git commit -m "build: Automated syncing files published elsewhere
 
 cmakemodules Find*.cmake"
