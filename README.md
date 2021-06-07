@@ -12,10 +12,22 @@ TL; DR: Fork this repository to start a new C++ project based on the symbol-sdk-
 	
 ### Build:
 	mkdir _build; cd _build
-	cmake ..
+	cmake  ..
 	make
+
+## install:
 	make install
 
+
+##Governance:
+
+ships: 
+	branch main: 
+		* Release Manager TBD
+
+	branch dev:
+		* developer marcos.mayorga@nem.software
+		* [apply^]
 
 
 

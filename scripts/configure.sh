@@ -61,6 +61,20 @@ function rename {
 		sed -i "s/my_project/$newname/g" Find${macroname}.cmake
 		sed -i "s/MY_PROJECT/$macroname/g" Find${macroname}.cmake
 	popd > /dev/null
+
+cat << EOF > README.md
+# $spacename
+
+## build:
+        mkdir _build; cd _build
+        cmake  ..
+        make
+
+## install:
+        make install
+
+EOF
+	git rm scripts/configure.sh
 }
 
 function bootstrap {
