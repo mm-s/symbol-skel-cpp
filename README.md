@@ -1,20 +1,21 @@
-# SYMBOLSKEL
-# skeleton/template for C++ projects based on the Symbol blockchain.
+# Symbol-skel-cpp
+Template Repository
+TL; DR: Fork this repository to start a new C++ project based on the symbol-sdk-cpp libraries.
 
-Forkable reference Repository for building C++ applications on the Symbol blockchain.
+## Instructions:
 
-# Getting started:
-
-## Fork this repository. Rename it (e.g. myProject)
-
-## First build:
+### Fork this repository and customize it.
+	git clone https://github.com/nemtech/symbol-skel-cpp
+	cd <your_project>
+	scripts/configure.sh <customization_details(enter nothing for help)>
+	
+	
+### Build:
 	mkdir _build; cd _build
 	cmake ..
 	make
 	make install
 
-## Change app name, version and other global properties
-  Edit file CMakeLists.txt, go to the "Main tweaking" section.
 
 
 
