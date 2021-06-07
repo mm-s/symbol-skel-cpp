@@ -2,14 +2,13 @@
 Template Repository
 TL; DR: Fork this repository to start a new C++ project based on the symbol-sdk-cpp libraries.
 
-## Instructions:
-
-
-### Why Symbol-sdk-cpp
+## Why Symbol-sdk-cpp
 
 This project is meant to provide a foundation for C++ application development on the Symbol blockchain.
 
 Depends on nemtech/[catapult_server](https://github.com/nemtech/catapult-server "GitHub link"), providing core algorithms.
+
+## Instructions:
 
 ### Fork this repository. Customize it.
 ```sh
