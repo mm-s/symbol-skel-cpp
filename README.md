@@ -1,3 +1,5 @@
+![Symbol-cpp](./doc/symbolcpp.png)
+
 # Symbol-skel-cpp
 Template Repository
 TL; DR: Fork this repository to start a new C++ project based on the symbol-sdk-cpp libraries.
