@@ -1,4 +1,4 @@
-![Symbol-cpp](./doc/symbolcpp.png)
+![Symbol-cpp](./doc/symbolcpp_200.png)
 
 # Symbol-skel-cpp
 Template Repository
