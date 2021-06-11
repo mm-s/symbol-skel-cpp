@@ -66,7 +66,7 @@ namespace my_namespace {
 	template<typename B>
 	MyHmi<B>::MyHmi(): b(Params{
 		    flagdefOption1(),
-		    flagdefOption1()
+		    flagdefOption2()
 		}) {
 
 	}
@@ -74,7 +74,7 @@ namespace my_namespace {
 	template<typename B>
 	MyHmi<B>::MyHmi(Params&&p): b(move(p)) {
 		add(flagdefOption1());
-		add(flagdefOption1());
+		add(flagdefOption2());
 	}
 
 	template<typename B>
