@@ -26,8 +26,8 @@ namespace my_namespace {
 		template<typename T> using ptr = symbol::ptr<T>;
 	public:
 		///User Flags definition
-		static constexpr auto Option1_Flag{'a'}; ///Example flags
-		static constexpr auto Option2_Flag{'b'};
+		static constexpr auto Option1_Flag{'Z'}; ///Example flags
+		static constexpr auto Option2_Flag{'z'};
 
 	public:
 		/// Constructor / Initialization/ Destruction
