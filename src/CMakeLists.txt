@@ -27,7 +27,7 @@ include_directories(${SYMBOLCORE_INCLUDE_DIRS})
 target_link_libraries (${PRJNAME}core ${SYMBOLCORE_LIBRARIES})
 
 include_directories(${SYMBOL_INCLUDE_DIRS})
-target_link_libraries (${PRJNAME}core ${SYMBOL_LIBRARIES})
+target_link_libraries (${PRJNAME}core ${SYMBOLRPC_LIBRARIES})
 
 set_property(TARGET ${PRJNAME}core PROPERTY POSITION_INDEPENDENT_CODE ON)
 
