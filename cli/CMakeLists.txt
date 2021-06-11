@@ -10,5 +10,12 @@ target_include_directories(my_project
 
 target_link_libraries(my_project PUBLIC my_projectcore)
 
+include_directories(${SYMBOLCORE_INCLUDE_DIRS})
+target_link_libraries (${PRJNAME}core ${SYMBOLCORE_LIBRARIES})
+
+include_directories(${SYMBOL_INCLUDE_DIRS})
+target_link_libraries (${PRJNAME}core ${SYMBOLRPC_LIBRARIES})
+
+
 install(TARGETS my_project DESTINATION bin)
 

@@ -11,6 +11,26 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
+#------------- Find Symbol-core
+find_package (SYMBOLCORE)
+if (NOT SYMBOLCORE_FOUND)
+        message(FATAL_ERROR "symbol-core required.")
+endif()
+message("Symbol-Core  headers: ${SYMBOLCORE_INCLUDE_DIRS}")
+message("             libs: ${SYMBOLCORE_LIBRARIES}")
+
+
+#------------- Find Symbol-rpc
+find_package (SYMBOLRPC)
+if (NOT SYMBOLRPC_FOUND)
+        message(FATAL_ERROR "symbol-rpc required.")
+endif()
+message("Symbol-Rpc  headers: ${SYMBOLRPC_INCLUDE_DIRS}")
+message("            libs: ${SYMBOLRPC_LIBRARIES}")
+
+
+
+
 add_subdirectory(src)
 add_subdirectory(cli)
 
