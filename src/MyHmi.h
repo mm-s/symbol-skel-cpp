@@ -43,7 +43,7 @@ namespace my_namespace {
 
 	private:
 
-		bool mainHandler(const Params& p, std::ostream& os) override;
+		bool mainHandler(Params& p, std::ostream& os) override;
 		bool cmd1(const Params&, std::ostream&); /// Command Handler
 
 		FlagDef flagdefOption1();
@@ -65,8 +65,8 @@ namespace my_namespace {
 
 	template<typename B>
 	MyHmi<B>::MyHmi(): b(Params{
-		    flagdefOption1(),
-		    flagdefOption2()
+			flagdefOption1(),
+			flagdefOption2()
 		}) {
 
 	}
@@ -112,7 +112,8 @@ namespace my_namespace {
 	}
 
 	template<typename B>
-	bool MyHmi<B>::mainHandler(const Params& p, ostream& os) {
+	bool MyHmi<B>::mainHandler(Params& p, ostream& os) {
+		if (!b::mainHandler(p, os)) return false;
 		m_o1_set = p.is_set(Option1_Flag);
 		m_o2_set = p.is_set(Option2_Flag);
 		return true;
