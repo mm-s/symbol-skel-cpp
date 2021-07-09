@@ -140,7 +140,7 @@ namespace my_namespace {
 	bool MyHmi<B>::cmd1(Params& p, bool last, std::ostream& os) { /// Command Handler
 		m_o3_set = p.is_set(Option3_Flag);
 		m_o4 = p.get(Option4_Flag);
-		if (last)
+		if (last) {
 			os << "Command1 Handler!.\n";
 		}
 		else {
