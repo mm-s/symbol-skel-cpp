@@ -50,8 +50,8 @@ namespace my_namespace {
 		static Params defParams();
 		static Params defCmd1Params();
 
-		bool mainHandler(Params& p, std::ostream& os) override;
-		bool cmd1(Params&, std::ostream&); /// Command Handler
+		virtual bool main(Params&, bool last, ostream&) override;
+		bool cmd1(Params&, bool last, std::ostream&); /// Command Handler
 
 		ptr<Section> createSectionCmd1();
 
@@ -132,21 +132,26 @@ namespace my_namespace {
 	template<typename B>
 	MyHmi<B>::ptr<typename MyHmi<B>::Section> MyHmi<B>::createSectionCmd1() {
 		auto s=new Section(defCmd1Params()); //params at Cmd1 scope
-		s->set_handler([&](Params& p, ostream& os) -> bool { return cmd1(p, os); });
+		s->set_handler([&](Params& p, bool last, ostream& os) -> bool { return cmd1(p, last, os); });
 		return s;
 	}
 
 	template<typename B>
-	bool MyHmi<B>::cmd1(Params& p, std::ostream& os) { /// Command Handler
+	bool MyHmi<B>::cmd1(Params& p, bool last, std::ostream& os) { /// Command Handler
 		m_o3_set = p.is_set(Option3_Flag);
 		m_o4 = p.get(Option4_Flag);
-		os << "Command1 Handler!.\n";
+		if (last)
+			os << "Command1 Handler!.\n";
+		}
+		else {
+			//no output on screen, there are further handlers
+		}
 		return true;
 	}
 
 	template<typename B>
-	bool MyHmi<B>::mainHandler(Params& p, ostream& os) {
-		if (!b::mainHandler(p, os)) return false;
+	bool MyHmi<B>::main(Params& p, bool last, ostream& os) {
+		if (!b::mainHandler(p, last, os)) return false;
 		m_o1_set = p.is_set(Option1_Flag);
 		m_o2_set = p.is_set(Option2_Flag);
 		return true;
