@@ -151,7 +151,7 @@ namespace my_namespace {
 
 	template<typename B>
 	bool MyHmi<B>::main(Params& p, bool last, ostream& os) {
-		if (!b::mainHandler(p, last, os)) return false;
+		if (!b::main(p, last, os)) return false;
 		m_o1_set = p.is_set(Option1_Flag);
 		m_o2_set = p.is_set(Option2_Flag);
 		return true;
