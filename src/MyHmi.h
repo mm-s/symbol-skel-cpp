@@ -43,7 +43,7 @@ namespace my_namespace {
 
 	protected:
 		/// Provides an opportunity to rewrite params before executing.
-		void pass1(ParamPath&, ostream&) override;
+		bool pass1(ParamPath&, ostream&) override;
 		void help_flag(const FlagDef&, ostream&) const override;
 
 	private:
@@ -153,8 +153,8 @@ namespace my_namespace {
 	}
 
 	template<typename B>
-	void MyHmi<B>::pass1(ParamPath& v, ostream& os) {
-		b::pass1(v, os);
+	bool MyHmi<B>::pass1(ParamPath& v, ostream& os) {
+		return b::pass1(v, os);
 	}
 
 	using MyHmiOffline = MyHmi<symbol::core::Hmi>;
