@@ -154,7 +154,7 @@ namespace my_namespace {
 
 	template<typename B>
 	void MyHmi<B>::pass1(ParamPath& v, ostream& os) {
-		b::pass1(v);
+		b::pass1(v, os);
 	}
 
 	using MyHmiOffline = MyHmi<symbol::core::Hmi>;
